@@ -1,0 +1,356 @@
+// 头部
+@mixin jd-bgi($x, $y) {
+    background-image: url(../images/jd-sprites.png);
+    background-size: 200px 200px;
+    background-position: $x $y;
+}
+
+$jd_color:#c91523;
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999999;
+    background-color: rgba(201, 21, 35, 0);;
+    height: 40px;
+    display: flex; // logo
+    a:nth-child(1) {
+        width: 70px; // background-image: url(../images/jd-sprites.png);
+        // background-size: 200px 200px;
+        // background-position: 0 -110px;
+        @include jd-bgi(0, -110px);
+        background-origin: content-box;
+        background-clip: content-box;
+        padding: 8px 5px;
+    }
+    .search {
+        flex: 1;
+        padding: 5px 0;
+        position: relative;
+        &::before {
+            content: "";
+            width: 20px;
+            height: 20px;
+            background-image: url(../images/jd-sprites.png);
+            background-size: 200px 200px;
+            background-position: -60px -110px;
+            position: absolute;
+            top: 12px;
+            left: 7px;
+        } // 给单标签加伪元素没有效果 所以给input的父元素加::before
+        input {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            padding-left: 30px;
+        }
+    } // 登陆
+    a:nth-of-type(2) {
+        display: flex;
+        width: 40px;
+        color: #fff;
+        justify-content: center;
+        align-items: center;
+    }
+}
+//轮播图
+.slides {
+    overflow: hidden;
+    .slides_ul {
+        width: 1000%;
+        li {
+            width: 10%;
+            float: left;
+        }
+    }
+}
+
+// nav 部分
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px 0;
+    a {
+        width: 25%;
+        text-align: center;
+        font-size: 12px;
+        img {
+            width: 50px;
+        }
+    }
+}
+
+// 秒杀部分
+.sec_kill {
+    .kill_title {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 10px;
+        .clock {
+            width: 18px;
+            height: 22px;
+            // background-image: url(../images/jd-sprites.png);
+            // background-size: 200px 200px;
+            // background-position: -85px -110px;
+            @include jd-bgi(-85px, -110px);
+        }
+        .kill_font {
+            color: orange;
+        }
+        .timer {
+            font-size: 0;
+            color: #fff;
+            >span {
+                background-color: #000;
+                font-size: 16px;
+                margin-left: 3px;
+                padding: 0 2px;
+            }
+            span:nth-child(3n) {
+                background-color: #fff;
+                color: #666;
+            }
+        }
+    }
+    .kill_content {
+        display: flex;
+        a {
+            text-align: center;
+            position: relative;
+            >span {
+                width: 44px;
+                height: 26px;
+                background-color: orange;
+                color: #fff;
+                border-radius: 50%;
+                font-size: 14px;
+                position: absolute;
+                top: 50%;
+                left: 52%;
+            }
+            p {
+                color: red;
+            }
+        }
+    }
+}
+
+// fes_title
+.festival {
+    .fes_title {
+        position: relative;
+        .fes_content1 {
+            position: absolute;
+            bottom: 5px;
+            padding: 0 5px;
+            li {
+                float: left;
+                width: 50%;
+            }
+        }
+    }
+    .fes_content {
+        display: flex;
+        flex-wrap: wrap;
+        a {
+            width: 50%;
+        }
+        a:nth-child(-n+3) {
+            width: 33.33%;
+        }
+    }
+}
+
+// 特色超市
+.market {
+    .market_title {
+        color: $jd_color;
+        font-weight: 700;
+        padding-left: 5px;
+    }
+    .market_content {
+        ul {
+            li {
+               
+                float: left;
+                width: 50%;  
+            }
+            li:nth-child(4){
+                clear: both;
+            }
+           
+        }
+    }
+}
+// 主题街
+.theme {
+    .theme_title{
+        color: $jd_color;
+        padding: 5px 5px;
+    }
+    .theme_content{
+        ul {
+            li{
+                width: 50%;
+                float: left;   
+            }
+            li:nth-last-child(-n+10){
+                width: 25%;   
+            }
+            li:nth-child(5){
+                clear: both;
+            }
+        }
+    }
+}
+// 品牌推荐
+.recommend {
+    .recommend_title{
+        color: $jd_color;
+        padding: 5px 5px;
+        font-weight: 600;
+    }
+    .recommend_content {
+        padding: 5px;
+        display: flex;
+        a:first-child {
+            flex: 4;
+        }
+        a {
+            flex:3;
+        }
+    }    
+}
+// banner
+.banner {
+    padding:5px;
+}
+// 猜你喜欢
+.like{
+    padding: 0 5px;
+    .like_tltle {
+        display: flex;
+        justify-content: space-between;
+        span {
+            color: $jd_color;
+        }
+        a {
+            color: $jd_color;
+            img {
+                width: 18px;
+            }
+        }
+    }
+    .like_content {
+        ul {
+            li {
+                float: left;
+                width: 50%;
+                padding: 5px;
+                .like_price {
+                    display: flex;
+                    justify-content: space-between;
+                    
+                    >span {
+                        color: $jd_color;
+                    }
+                    >a {
+                        border:1px solid #ccc;
+                        font-size: 14px;
+                    }
+                }
+                .like_details {
+                    overflow: hidden;
+                    img {
+                        margin: 5px;
+                    }
+                    p {
+                        font-size: 14px;
+                        height: 38px;
+                        padding-bottom: 5px;
+                        border-bottom: 1px solid #ccc;
+                    }
+                }
+            }
+        }
+    }
+}
+// footer 
+.footer {
+    background-color: #f3f5f7;
+    margin-bottom: 58px;
+   .more {
+    border-bottom: 1px solid #ccc;
+      >a{
+        text-align: center;
+        padding: 15px 0;
+      }
+   } 
+   .direct{
+        border-bottom: 1px solid #ccc;
+        display: flex;
+        padding: 10px 0px;
+        a:first-child{
+            border-left: none;
+        }
+       >a {
+           float: left;
+           width: 25%;
+           border-left: 1px solid #ccc;
+           text-align: center;
+       }
+
+   }
+   .app_icon {
+        border-bottom: 1px solid #ccc;  
+        display: flex;
+        padding: 10px;
+        >a {
+            width: 33.33%;
+            float: left;
+            text-align: center;
+            span {
+                background-image: url(../images/jd-sprites.png);
+                background-size: 200px 200px;
+                display: inline-block;
+                width: 33px;
+                height: 33px;
+            }
+            span:nth-of-type(1){
+                background-position: -120px -70px;
+            }
+            span:nth-of-type(2){
+                background-position: -40px -70px;
+            }
+            span:nth-of-type(3){
+                background-position: -80px -70px;
+            }
+            p {
+                text-align: center;
+            }
+        }
+   }
+   .copyright{
+        padding-bottom: 50px;
+        padding: 10px;
+        a {
+            text-align: center;
+        }
+   }
+}
+// 
+.footer_toolbar {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    background-color: #fff;
+    z-index: 9999;
+    a {
+       flex: 1;
+       img {
+           width: 75px;
+       }
+    }
+}
